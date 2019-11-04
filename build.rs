@@ -25,7 +25,7 @@ fn main() {
     }
 
     //module: noise
-    if enabled!("2D-NOISE"){
+    if enabled!("2D_NOISE"){
         write!(f, r#"
 #define rustg_perlin_noise_2d(fname, seed) call(RUST_G, "perlin_noise_2d")(fname, seed)
 "#).unwrap()
