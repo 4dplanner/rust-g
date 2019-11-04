@@ -24,6 +24,13 @@ fn main() {
 "#).unwrap();
     }
 
+    //module: noise
+    if enabled!("2d-noise") {
+        write!(f, r#"
+#define rustg_perlin_noise_2d(fname, seed) call(RUST_G, "perlin_noise_2d")(fname, seed)
+"#).unwrap()
+    }
+
     // module: file
     if enabled!("FILE") {
         write!(f, r#"
