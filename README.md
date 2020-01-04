@@ -87,6 +87,7 @@ cargo build --release --features dmi,file,log,url
 * hash: Faster replacement for `md5`, support for SHA-1, SHA-256, and SHA-512. Requires OpenSSL on Linux.
 * **log** (default): Faster log output.
 * url: Faster replacements for `url_encode` and `url_decode`.
+* 2d-noise: 2d perlin noise.
 
 ## Installing
 
