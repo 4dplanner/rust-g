@@ -15,11 +15,22 @@ extern crate percent_encoding;
 extern crate png;
 #[cfg(feature="2d-noise")]
 extern crate noise;
+#[cfg(feature="http")]
+extern crate reqwest;
+#[cfg(feature="http")]
+#[macro_use]
+extern crate serde_derive;
+#[cfg(feature="http")]
+extern crate serde_json;
+#[cfg(feature="http")]
+#[macro_use]
+extern crate lazy_static;
 
 #[macro_use]
 mod byond;
 #[allow(dead_code)]
 mod error;
+mod jobs;
 
 #[cfg(feature="dmi")]
 pub mod dmi;
@@ -35,3 +46,5 @@ pub mod log;
 pub mod url;
 #[cfg(feature="2d-noise")]
 pub mod noise_gen;
+#[cfg(feature="http")]
+pub mod http;

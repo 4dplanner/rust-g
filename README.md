@@ -31,6 +31,8 @@ The [Rust] compiler:
 1. Set the default compiler to **32-bit**:
 
     ```sh
+    # Clone the `rust-g` repository to a directory of your choice
+    git clone https://github.com/tgstation/rust-g.git
     # in the `rust-g` directory...
     cd rust-g
     # Linux
@@ -78,7 +80,7 @@ On Windows, the output will be `target/release/rust_g.dll`.
 For more advanced configuration, a list of modules may be passed:
 
 ```sh
-cargo build --release --features dmi,file,log,url
+cargo build --release --features dmi,file,log,url,http
 ```
 
 * **dmi** (default): DMI manipulations which are impossible from within BYOND.
@@ -88,6 +90,7 @@ cargo build --release --features dmi,file,log,url
 * **log** (default): Faster log output.
 * url: Faster replacements for `url_encode` and `url_decode`.
 * 2d-noise: 2d perlin noise.
+* http: HTTP client to allow `GET`, `POST`, `PUT`, `PATCH`, `DELETE` and `HEAD`. 
 
 ## Installing
 

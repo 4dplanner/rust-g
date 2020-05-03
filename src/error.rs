@@ -30,6 +30,15 @@ pub enum Error {
     ParseIntError(#[cause] ParseIntError),
     #[fail(display = "{}", _0)]
     ParseFloatError(#[cause] ParseFloatError),
+    #[cfg(feature="png")]
+    #[fail(display = "Invalid png data.")]
+    InvalidPngDataError,
+    #[cfg(feature="http")]
+    #[fail(display = "{}", _0)]
+    RequestError(#[cause] reqwest::Error),
+    #[cfg(feature="http")]
+    #[fail(display = "{}", _0)]
+    SerializationError(#[cause] serde_json::Error),
 }
 
 impl From<io::Error> for Error {
@@ -67,6 +76,19 @@ impl From<ParseIntError> for Error {
 impl From<ParseFloatError> for Error {
     fn from(error: ParseFloatError) -> Error {
         Error::ParseFloatError(error)
+    }
+}
+#[cfg(feature="http")]
+impl From<reqwest::Error> for Error {
+    fn from(error: reqwest::Error) -> Error {
+        Error::RequestError(error)
+    }
+}
+
+#[cfg(feature="http")]
+impl From<serde_json::Error> for Error {
+    fn from(error: serde_json::Error) -> Error {
+        Error::SerializationError(error)
     }
 }
 
