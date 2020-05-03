@@ -38,7 +38,10 @@ fn get_at_coordinates(generator_id: &str, x_as_str: &str, y_as_str: &str) -> Res
         let generators = cell.borrow();
         let generator = generators.get(&generator_id.to_string());
         if let Some(generator) = generator{
-            Result::Ok(generator.get([x,y]).to_string())
+            //from - sqrt(0.5) to +sqrt(0.5)
+            let unscaled = generator.get([x,y]);
+            let scaled_from_0_to_1 = (unscaled * 2.0.sqrt() + 1)/2.0;
+            Result::Ok(scaled_from_0_to_1.to_string()))
         }
         else{
             Result::Err(crate::error::Error::Io(Error::new(ErrorKind::Other, "No such generator")))
